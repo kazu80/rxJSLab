@@ -12,7 +12,7 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     // Subscribeで実行される
-    Observable.of(1, 2, 3).map(x => x + '!!!').subscribe(x => console.log(x));
+      // Observable.of(1, 2, 3).map(x => x + '!!!').subscribe(x => console.log(x));
 
     const button = document.getElementById('button');
 
@@ -27,6 +27,7 @@ export class MainComponent implements OnInit {
 
     // Observableを新規生成
     // nextの内容はsubscribeに書く
+      /*
     const observable = Observable.create(function (observer: any) {
       observer.next(1);
       observer.next(2);
@@ -44,7 +45,32 @@ export class MainComponent implements OnInit {
       complete: () => console.log('done'),
     });
     console.log('just after subscribe');
+       */
+
+      /*
+       const observable = Observable.create(function subscribe(observer) {
+       const id = setInterval(() => {
+       observer.next('hi')
+       }, 1000);
+       });
+       observable.subscribe(x => console.log(x));
+       */
+
+      /**
+       * subjectは、マルチキャストなオブザーバ
+       * 他のsubscribeの引数に指定することも可能（ストリームを2本に分ける？）
+       */
+      const subject = new Subject();
+
+      subject.subscribe({
+          next: (v: number) => console.log(v)
+      });
+
+      subject.subscribe({
+          next: (v: number) => console.log(v)
+      });
+
+      const observable = Observable.from([1, 2, 3]);
+      observable.subscribe(subject);
   }
-
-
 }

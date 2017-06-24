@@ -13,6 +13,6 @@ import {ObservableNextComponent} from './observable-next/observable-next.compone
     BrowserModule
   ],
   providers   : [],
-  bootstrap   : [ObservableNextComponent]
+    bootstrap : [MainComponent]
 })
 export class AppModule { }
