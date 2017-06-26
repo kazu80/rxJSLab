@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject, BehaviorSubject} from 'rxjs/Rx';
+import {ReplaySubject} from "rxjs/ReplaySubject";
+
 
 @Component({
   selector: 'app-main',
@@ -60,6 +62,7 @@ export class MainComponent implements OnInit {
        * subjectは、マルチキャストなオブザーバ
        * 他のsubscribeの引数に指定することも可能（ストリームを2本に分ける？）
        */
+      /*
       const subject = new Subject();
 
       subject.subscribe({
@@ -72,5 +75,114 @@ export class MainComponent implements OnInit {
 
       const observable = Observable.from([1, 2, 3]);
       observable.subscribe(subject);
+       */
+
+      /*
+       const source = Observable.from([1, 2, 3]);
+       const subject = new Subject();
+       const multicasted = source.multicast(subject);
+
+       multicasted.subscribe({
+       next: (v) => console.log('observerA:' + v)
+       });
+       multicasted.subscribe({
+       next: (v) => console.log('observerB:' + v)
+       });
+
+       multicasted.connect();
+       */
+
+      /*
+       const source  = Observable.interval(500);
+       const subject = new Subject();
+       const multicasted = source.multicast(subject);
+       let subscription1, subscription2, subscriptionConnect;
+
+       subscription1 = multicasted.subscribe({
+       next: (v) => console.log('observerA:' + v)
+       });
+
+       subscriptionConnect = multicasted.connect();
+
+       setTimeout(() => {
+       subscription2 = multicasted.subscribe({
+       next: (v) => console.log('observerB:' + v)
+       });
+       }, 600);
+
+       setTimeout(() => {
+       subscription1.unsubscribe();
+       }, 1200);
+
+
+       setTimeout(() => {
+       subscription2.unsubscribe();
+       subscriptionConnect.unsubscribe();
+       }, 2000);
+       */
+
+      /*
+       const source = Observable.interval(500);
+       const subject = new Subject();
+       const refCounted = source.multicast(subject).refCount();
+       let subscription1, subscription2, subscriptionConnect;
+
+       console.log("observerA subscribed");
+       subscription1 = refCounted.subscribe({
+       next: (v) => console.log('observerA:' + v)
+       });
+
+       setTimeout(() => {
+       console.log('observerB subscribed');
+       subscription2 = refCounted.subscribe({
+       next: (v) => console.log('observerB:' + v)
+       });
+       }, 600);
+
+       setTimeout(() => {
+       console.log("observerA unsubscribed");
+       subscription1.unsubscribe();
+       }, 1200);
+
+       setTimeout(() => {
+       console.log("observerB unsubscribed");
+       subscription2.unsubscribe();
+       }, 2000);
+       */
+
+      /*
+       const subject = new BehaviorSubject(0);
+
+       subject.subscribe({
+       next: (v) => console.log('observerA:' + v)
+       });
+
+       subject.next(1);
+       subject.next(2);
+
+       subject.subscribe({
+       next: (v) => console.log('observerB:' + v)
+       });
+
+       subject.next(3);
+       */
+
+      const subject = new ReplaySubject(2);
+
+      subject.subscribe({
+          next: (v) => console.log('observerA:' + v)
+      });
+
+      subject.next(1);
+      subject.next(2);
+      subject.next(3);
+      subject.next(4);
+
+      subject.subscribe({
+          next: (v) => console.log('observerB:' + v)
+      });
+
+      subject.next(5);
+
   }
 }
