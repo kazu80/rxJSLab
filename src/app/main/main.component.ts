@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subject, BehaviorSubject} from 'rxjs/Rx';
-import {ReplaySubject} from "rxjs/ReplaySubject";
+import {Observable, Subject, BehaviorSubject, Scheduler} from 'rxjs/Rx';
+import {EndpointService} from "../service/endpoint.service";
 
 
 @Component({
@@ -9,23 +9,28 @@ import {ReplaySubject} from "rxjs/ReplaySubject";
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
+    private num: number;
+    private input: any;
 
-  constructor() { }
+    constructor(private endpoint_service: EndpointService) {
+    }
 
   ngOnInit() {
     // Subscribeで実行される
       // Observable.of(1, 2, 3).map(x => x + '!!!').subscribe(x => console.log(x));
 
-    const button = document.getElementById('button');
+      // const button = document.getElementById('button');
 
     // scanは、前回の値を引数に取る。第2引数はでデフォルト値
     // throttleTimeは、指定した時間Subscribeさせない（キャンセルする）
     // mapで新しい値を生成して流している
+      /*
     Observable.fromEvent(button, 'click')
         .throttleTime(1000)
         .map((event: any) => event.clientX)
         .scan((count: any, clientX: any) => count + clientX, 0)
         .subscribe((count: any) => console.log(count));
+       */
 
     // Observableを新規生成
     // nextの内容はsubscribeに書く
@@ -167,6 +172,7 @@ export class MainComponent implements OnInit {
        subject.next(3);
        */
 
+      /*
       const subject = new ReplaySubject(2);
 
       subject.subscribe({
@@ -183,6 +189,55 @@ export class MainComponent implements OnInit {
       });
 
       subject.next(5);
+       */
+
+      /*
+       const observable = Observable.create(function (observer) {
+       observer.next(1);
+       observer.next(2);
+       observer.next(3);
+       observer.complete();
+       })
+       .observeOn(Scheduler.async);
+
+       console.log('just before subscribe');
+       observable.subscribe({
+       next: x => console.log('got value ' + x),
+       error: err => console.error('somthing wrong occurred:' + err),
+       complete: () => console.log('done'),
+       });
+       console.log('just after subscribe');
+       */
+
+      // this.input = Observable.fromEvent(document.querySelector('button'), 'click')
+  }
+
+    public click(event) {
+
+        // http://foo.com/
+        /*
+         const myObservable = new Subject();
+         myObservable.subscribe(value => console.log(value));
+         myObservable.next(this.endpoint_service.url_foo);
+         */
+
+        // http://bar.com/
+        /*
+         const myObservable = Observable.create(observer => {
+         observer.next(this.endpoint_service.url_bar);
+         });
+         myObservable.subscribe(value => console.log(value));
+         */
+
+
+        // myObservable.next(this.num);
+
+        // myObservable.delay(200).subscribe(value => console.log(value));
+
+
+    }
+
+    click2() {
 
   }
 }

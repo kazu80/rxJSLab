@@ -1,7 +1,13 @@
 <main>
 
-  <div class="button-wrapper">
-    <button id="button">Click me</button>
+    <div class="form-wrapper">
+        <input (input)="num = $event.target.value">
+    </div>
+
+    <div class="button-wrapper">
+        <button id="button" (click)="click($event)">Click me</button>
   </div>
+
+    <div (click)="click2()">click2</div>
 
 </main>

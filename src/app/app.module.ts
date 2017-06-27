@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { MainComponent } from './main/main.component';
 import {ObservableNextComponent} from './observable-next/observable-next.component';
+import {EndpointService} from "./service/endpoint.service";
 
 @NgModule({
   declarations: [
@@ -12,7 +13,9 @@ import {ObservableNextComponent} from './observable-next/observable-next.compone
   imports     : [
     BrowserModule
   ],
-  providers   : [],
+  providers   : [
+    EndpointService
+  ],
     bootstrap : [MainComponent]
 })
 export class AppModule { }
