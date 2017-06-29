@@ -30,4 +30,13 @@ export class EventInputService {
         observable.pluck('target', 'value').pairwise()
             .subscribe(value => console.log(value));
     }
+
+    public inputD(element: HTMLElement) {
+        const observable = Observable.fromEvent(element, 'input');
+
+        // distinctは、同じ値が来たら流さない。
+        // この例の場合は、対象はinputに入力されているvalueが対象なので注意
+        observable.pluck('target', 'value').distinct()
+            .subscribe(value => console.log(value));
+    }
 }
