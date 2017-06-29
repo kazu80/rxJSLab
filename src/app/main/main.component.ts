@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable, Subject, BehaviorSubject, Scheduler} from 'rxjs/Rx';
 import {EndpointService} from "../service/endpoint.service";
+import {FooService} from "../service/foo.service";
+import {EventClickService} from "../service/event-click.service";
 
 
 @Component({
@@ -12,7 +14,9 @@ export class MainComponent implements OnInit {
     private num: number;
     private input: any;
 
-    constructor(private endpoint_service: EndpointService) {
+    constructor(private endpoint_service: EndpointService,
+                private foo_service: FooService,
+                private event_click_service: EventClickService) {
     }
 
   ngOnInit() {
@@ -209,7 +213,14 @@ export class MainComponent implements OnInit {
        console.log('just after subscribe');
        */
 
-      // this.input = Observable.fromEvent(document.querySelector('button'), 'click')
+      // this.foo_service.click(Observable.fromEvent(document.querySelector('button'), 'click'));
+
+      this.event_click_service.buttonA(document.querySelector('button'));
+      this.event_click_service.buttonB(document.querySelector('button'));
+
+
+
+
   }
 
     public click(event) {
