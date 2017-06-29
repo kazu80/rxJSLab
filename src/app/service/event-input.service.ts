@@ -22,4 +22,12 @@ export class EventInputService {
         observable.pluck('target', 'value')
             .subscribe(value => console.log(value));
     }
+
+    public inputC(element: HTMLElement) {
+        const observable = Observable.fromEvent(element, 'input');
+
+        // pairwiseは、前回の結果と今回の結果を配列にして返す
+        observable.pluck('target', 'value').pairwise()
+            .subscribe(value => console.log(value));
+    }
 }
