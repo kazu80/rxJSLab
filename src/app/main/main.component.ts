@@ -215,9 +215,13 @@ export class MainComponent implements OnInit {
 
       // this.foo_service.click(Observable.fromEvent(document.querySelector('button'), 'click'));
 
-      this.event_click_service.buttonA(document.querySelector('button'));
-      this.event_click_service.buttonB(document.querySelector('button'));
-
+      // this.event_click_service.buttonA(document.querySelector('button'));
+      // this.event_click_service.buttonB(document.querySelector('button'));
+      // this.event_click_service.buttonC(document.querySelector('button'));
+      this.event_click_service.buttonD(
+          document.getElementById('button'),
+          document.getElementById('button_b')
+      );
 
 
 
