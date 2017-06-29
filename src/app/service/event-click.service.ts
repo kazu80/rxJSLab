@@ -30,8 +30,6 @@ export class EventClickService {
     }
 
     public buttonD(element: HTMLElement, element_b: HTMLElement) {
-        console.log(element);
-
         const observable_a = Observable.fromEvent(element, 'click');
         const observable_b = Observable.fromEvent(element_b, 'click');
 

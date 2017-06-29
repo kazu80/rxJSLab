@@ -3,6 +3,7 @@ import {Observable, Subject, BehaviorSubject, Scheduler} from 'rxjs/Rx';
 import {EndpointService} from "../service/endpoint.service";
 import {FooService} from "../service/foo.service";
 import {EventClickService} from "../service/event-click.service";
+import {EventInputService} from "../service/event-input.service";
 
 
 @Component({
@@ -16,7 +17,8 @@ export class MainComponent implements OnInit {
 
     constructor(private endpoint_service: EndpointService,
                 private foo_service: FooService,
-                private event_click_service: EventClickService) {
+                private event_click_service: EventClickService,
+                private event_input_service: EventInputService) {
     }
 
   ngOnInit() {
@@ -223,7 +225,8 @@ export class MainComponent implements OnInit {
           document.getElementById('button_b')
       );
 
-
+      // 値の作成
+      this.event_input_service.inputA(document.getElementById('input_a'));
 
   }
 

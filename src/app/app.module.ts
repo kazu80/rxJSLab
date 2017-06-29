@@ -6,6 +6,7 @@ import {ObservableNextComponent} from './observable-next/observable-next.compone
 import {EndpointService} from "./service/endpoint.service";
 import {FooService} from "./service/foo.service";
 import {EventClickService} from "./service/event-click.service";
+import {EventInputService} from "./service/event-input.service";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {EventClickService} from "./service/event-click.service";
   providers   : [
     EndpointService,
     FooService,
-    EventClickService
+    EventClickService,
+    EventInputService
   ],
     bootstrap : [MainComponent]
 })
