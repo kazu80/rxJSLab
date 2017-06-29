@@ -229,7 +229,8 @@ export class MainComponent implements OnInit {
       // this.event_input_service.inputA(document.getElementById('input_a'));
       // this.event_input_service.inputB(document.getElementById('input_a'));
       // this.event_input_service.inputC(document.getElementById('input_a'));
-      this.event_input_service.inputD(document.getElementById('input_a'));
+      // this.event_input_service.inputD(document.getElementById('input_a'));
+      this.event_input_service.inputE(document.getElementById('input_a'));
 
   }
 

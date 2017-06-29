@@ -39,4 +39,13 @@ export class EventInputService {
         observable.pluck('target', 'value').distinct()
             .subscribe(value => console.log(value));
     }
+
+    public inputE(element: HTMLElement) {
+        const observable = Observable.fromEvent(element, 'input');
+
+        // .distinctUntilChangedは、流れてきた値が前回の値と同じ場合は流さない。
+        // 前回は違う値で、前々回と同じ場合は流れる。
+        observable.pluck('target', 'value').distinctUntilChanged()
+            .subscribe(value => console.log(value));
+    }
 }
