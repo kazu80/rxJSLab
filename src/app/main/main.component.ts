@@ -227,6 +227,7 @@ export class MainComponent implements OnInit {
 
       // 値の作成
       this.event_input_service.inputA(document.getElementById('input_a'));
+      this.event_input_service.inputB(document.getElementById('input_a'));
 
   }
 
