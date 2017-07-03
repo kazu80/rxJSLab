@@ -37,4 +37,12 @@ export class EventClickService {
         observable_a.takeUntil(observable_b)
             .subscribe(() => console.log("qux"));
     }
+
+    public counterA(element: HTMLElement, output: HTMLElement) {
+        Observable.fromEvent(element, 'click')
+            .scan((count: number) => count + 1, 0)
+            .subscribe((count: number) => {
+                output.innerText = String(count);
+            });
+    }
 }

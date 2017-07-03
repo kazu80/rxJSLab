@@ -220,17 +220,23 @@ export class MainComponent implements OnInit {
       // this.event_click_service.buttonA(document.querySelector('button'));
       // this.event_click_service.buttonB(document.querySelector('button'));
       // this.event_click_service.buttonC(document.querySelector('button'));
+      /*
       this.event_click_service.buttonD(
           document.getElementById('button'),
           document.getElementById('button_b')
       );
+       */
 
       // 値の作成
       // this.event_input_service.inputA(document.getElementById('input_a'));
       // this.event_input_service.inputB(document.getElementById('input_a'));
       // this.event_input_service.inputC(document.getElementById('input_a'));
       // this.event_input_service.inputD(document.getElementById('input_a'));
-      this.event_input_service.inputE(document.getElementById('input_a'));
+      // this.event_input_service.inputE(document.getElementById('input_a'));
+
+      // アプリケーションの作成
+      const count = this.event_click_service.counterA(document.getElementById('button'), document.getElementById('count'));
+
 
   }
 
