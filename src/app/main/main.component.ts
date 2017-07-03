@@ -235,7 +235,8 @@ export class MainComponent implements OnInit {
       // this.event_input_service.inputE(document.getElementById('input_a'));
 
       // アプリケーションの作成
-      const count = this.event_click_service.counterA(document.getElementById('button'), document.getElementById('count'));
+      // const count = this.event_click_service.counterA(document.getElementById('button'), document.getElementById('count'));
+
 
 
   }

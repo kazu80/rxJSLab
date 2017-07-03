@@ -45,4 +45,45 @@ export class EventClickService {
                 output.innerText = String(count);
             });
     }
+
+    public counterB(increaseElement: HTMLElement) {
+        const increase = Observable.fromEvent(increaseElement, 'click')
+            .map(() => state => Object.assign({}, state, {counter: state.count + 1}));
+
+        const decrease = Observable.fromEvent(increaseElement, 'click')
+            .map(() => (state: State) => Object.assign({}, state, {count: state.count - 1}));
+
+        // const stateB = increase.scan((state, changeFn) => changeFn(state), {count: 0});
+        // const stateB = Observable.merge(increase, decrease).scan((state, changeFn) => changeFn(state), {
+        const stateB = Observable.merge(increase).scan((state, changeFn) => changeFn(state), {
+            count     : 0,
+            inputValue: ''
+        });
+    }
+
+    /*
+     public counterB(increaseElement: HTMLElement, decreaseElement: HTMLElement, inputElement: HTMLElement) {
+     const increase = Observable.fromEvent(increaseElement, 'click')
+     .map(() => (state: State) => Object.assign({}, state, {count: state.count + 1}));
+
+     const decrease = Observable.fromEvent(decreaseElement, 'click')
+     .map(() => (state: State) => Object.assign({}, state, {count: state.count - 1}));
+
+     const input = Observable.fromEvent(inputElement, 'keypress')
+     .map((event: any) => state => Object.assign({}, state, {inputValue: event.target.value}));
+
+     const state = Observable.merge(
+     increase,
+     decrease,
+     input
+     ).scan((stateFoo: any, fooFn) => fooFn(stateFoo), {
+     count: 0,
+     inputValue: ''
+     });
+     }
+     */
+}
+
+interface State {
+    count: number
 }
